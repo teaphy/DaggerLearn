@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/tv_singleText"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingTop="6dp"
+		android:paddingBottom="6dp"
+		android:gravity="center"
+		tools:text="张三"
+		android:textSize="@dimen/sp_16"/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/colorF1"/>
+</LinearLayout>

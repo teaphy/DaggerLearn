@@ -37,8 +37,3 @@ proguard/
 app/.gradle/
 projectFilesBackup/
 
-.gitignore
-build.gradle
-libs/
-proguard-rules.pro
-src/
