@@ -1,5 +1,6 @@
 package advanced.todo.com.daggerlearn.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 	@BindView(R.id.toolBar)
 	Toolbar mToolbar;
 
+	protected Context mContext;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		AndroidInjection.inject(this);
@@ -28,6 +31,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 		setContentView(getLayoutId());
 
 		ButterKnife.bind(this);
+
+		mContext = this;
 
 		initToolBar();
 
