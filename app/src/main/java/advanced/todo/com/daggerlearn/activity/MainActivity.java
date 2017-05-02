@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,10 +16,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import advanced.todo.com.daggerlearn.R;
 import advanced.todo.com.daggerlearn.adapter.SingleTextAdapter;
 import advanced.todo.com.daggerlearn.base.BaseActivity;
+import advanced.todo.com.daggerlearn.bean.BananaBean;
 import advanced.todo.com.daggerlearn.bean.Fruits;
+import advanced.todo.com.daggerlearn.bean.OrangeBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.Component;
@@ -32,6 +37,7 @@ public class MainActivity extends BaseActivity {
 
 	List<String> mList;
 	SingleTextAdapter mAdapter;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,7 @@ public class MainActivity extends BaseActivity {
 						startActivity(new Intent(mContext, FruitActivity.class));
 						break;
 					case 1:
-
+						startActivity(new Intent(mContext, DrinkActivity.class));
 						break;
 					case 2:
 

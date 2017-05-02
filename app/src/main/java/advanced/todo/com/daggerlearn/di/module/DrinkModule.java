@@ -3,10 +3,7 @@ package advanced.todo.com.daggerlearn.di.module;
 import javax.inject.Singleton;
 
 import advanced.todo.com.daggerlearn.bean.AppleBean;
-import advanced.todo.com.daggerlearn.bean.Fruits;
 import advanced.todo.com.daggerlearn.bean.GreenTeaBean;
-import advanced.todo.com.daggerlearn.bean.OrangeBean;
-import advanced.todo.com.daggerlearn.di.qualifier.Type;
 import advanced.todo.com.daggerlearn.di.scope.TodoScope;
 import dagger.Module;
 import dagger.Provides;
@@ -18,8 +15,9 @@ import dagger.Provides;
  */
 // 注明本类属于Module
 @Module()
-public class FruitModule {
+public class DrinkModule {
 
+	@TodoScope
 	@Provides
 	public AppleBean providerApple() {
 		return new AppleBean();

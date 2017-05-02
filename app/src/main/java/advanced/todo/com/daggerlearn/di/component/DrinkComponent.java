@@ -2,10 +2,10 @@ package advanced.todo.com.daggerlearn.di.component;
 
 import javax.inject.Singleton;
 
+import advanced.todo.com.daggerlearn.activity.DrinkActivity;
 import advanced.todo.com.daggerlearn.activity.FruitActivity;
-import advanced.todo.com.daggerlearn.bean.AppleBean;
+import advanced.todo.com.daggerlearn.di.module.DrinkModule;
 import advanced.todo.com.daggerlearn.di.module.FruitModule;
-import advanced.todo.com.daggerlearn.di.qualifier.Type;
 import advanced.todo.com.daggerlearn.di.scope.TodoScope;
 import dagger.Component;
 
@@ -16,8 +16,8 @@ import dagger.Component;
  */
 @Singleton
 @TodoScope
-@Component(modules = {FruitModule.class})
-public interface FruitComponent {
+@Component(modules = {DrinkModule.class})
+public interface DrinkComponent {
 
-	void inject(FruitActivity activity);
+	void inject(DrinkActivity activity);
 }

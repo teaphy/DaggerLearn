@@ -14,34 +14,19 @@ import advanced.todo.com.daggerlearn.bean.AppleBean;
 import advanced.todo.com.daggerlearn.bean.BananaBean;
 import advanced.todo.com.daggerlearn.bean.GreenTeaBean;
 import advanced.todo.com.daggerlearn.bean.OrangeBean;
+import advanced.todo.com.daggerlearn.di.component.DaggerDrinkComponent;
 import advanced.todo.com.daggerlearn.di.component.DaggerFruitComponent;
+import advanced.todo.com.daggerlearn.di.component.DrinkComponent;
 import advanced.todo.com.daggerlearn.di.component.FruitComponent;
-import advanced.todo.com.daggerlearn.di.qualifier.Type;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FruitActivity extends AppCompatActivity {
+public class DrinkActivity extends AppCompatActivity {
 
 	@BindView(R.id.tv_fruit)
 	TextView tvFruit;
 	@BindView(R.id.toolBar)
 	Toolbar mToolbar;
-
-//	@Type("color")
-//	@Inject
-//	AppleBean appleColorA;
-//	@Type("color")
-//	@Inject
-//	AppleBean appleColorB;
-
-
-//	@Type("name")
-//	@Inject
-//	AppleBean appleNameA;
-//
-//	@Type("name")
-//	@Inject
-//	AppleBean appleNameB;
 
 	@Inject
 	OrangeBean orangeA;
@@ -65,7 +50,7 @@ public class FruitActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		FruitComponent fruitComponent = DaggerFruitComponent.builder()
+		DrinkComponent fruitComponent = DaggerDrinkComponent.builder()
 				.build();
 		fruitComponent.inject(this);
 		super.onCreate(savedInstanceState);
@@ -75,30 +60,27 @@ public class FruitActivity extends AppCompatActivity {
 
 		initToolBar();
 
-//		//  appleColorA:advanced.todo.com.daggerlearn.bean.AppleBean@3d061bc6
-//		Log.d("test", "appleColorA:" + appleColorA.toString());
-//		//  appleColorB:advanced.todo.com.daggerlearn.bean.AppleBean@19345787
-//		Log.d("test", "appleColorB:" + appleColorB.toString());
 
-		// Fruit - orangeA:advanced.todo.com.daggerlearn.bean.OrangeBean@3d061bc6
-		Log.d("test", "Fruit - orangeA:" + orangeA.toString());
-		// Fruit - orangeA:advanced.todo.com.daggerlearn.bean.OrangeBean@3d061bc6
-		Log.d("test", "Fruit - orangeB:" + orangeB.toString());
+		// Drink - orangeA:advanced.todo.com.daggerlearn.bean.OrangeBean@db77b6b
+		Log.d("test", "Drink - orangeA:" + orangeA.toString());
+		// Drink - orangeB:advanced.todo.com.daggerlearn.bean.OrangeBean@db77b6b
+		Log.d("test", "Drink - orangeB:" + orangeB.toString());
 
-		// Fruit - bananaA:advanced.todo.com.daggerlearn.bean.BananaBean@19345787
-		Log.d("test", "Fruit - bananaA:" + bananaA.toString());
-		// Fruit - bananaB:advanced.todo.com.daggerlearn.bean.BananaBean@275e96b4
-		Log.d("test", "Fruit - bananaB:" + bananaB.toString());
+		// Drink - bananaA:advanced.todo.com.daggerlearn.bean.BananaBean@1e7c56c8
+		Log.d("test", "Drink - bananaA:" + bananaA.toString());
+		// Drink - bananaB:advanced.todo.com.daggerlearn.bean.BananaBean@4121361
+		Log.d("test", "Drink - bananaB:" + bananaB.toString());
 
 		// Drink - greenTeaA:advanced.todo.com.daggerlearn.bean.GreenTeaBean@186932dd
-		Log.d("test", "Fruit - greenTeaA:" + greenTeaA.toString());
+		Log.d("test", "Drink - greenTeaA:" + greenTeaA.toString());
 		// Drink - greenTeaB:advanced.todo.com.daggerlearn.bean.GreenTeaBean@26382e52
-		Log.d("test", "Fruit - greenTeaB:" + greenTeaB.toString());
+		Log.d("test", "Drink - greenTeaB:" + greenTeaB.toString());
+
 
 		// Drink - greenTeaA:advanced.todo.com.daggerlearn.bean.GreenTeaBean@186932dd
-		Log.d("test", "Fruit - appleBeanA:" + appleBeanA.toString());
+		Log.d("test", "Drink - appleBeanA:" + appleBeanA.toString());
 		// Drink - greenTeaB:advanced.todo.com.daggerlearn.bean.GreenTeaBean@26382e52
-		Log.d("test", "Fruit - appleBeanB:" + appleBeanB.toString());
+		Log.d("test", "Drink - appleBeanB:" + appleBeanB.toString());
 
 		tvFruit.setText(orangeA.toString());
 		tvFruit.append("\n");

@@ -1,27 +1,20 @@
 package advanced.todo.com.daggerlearn.bean;
 
+import android.util.Log;
+
+import javax.inject.Inject;
+
+import advanced.todo.com.daggerlearn.di.scope.TodoScope;
+
 /**
  * @author todo
  * @desc
  * @date 2017/4/29
  */
+@TodoScope
 public class OrangeBean {
-	private String name;
-	private double price;
-	private String area;
-
-	public OrangeBean(String name, double price, String area) {
-		this.name = name;
-		this.price = price;
-		this.area = area;
-	}
-
-	@Override
-	public String toString() {
-		return "OrangeBean{" +
-				"name='" + name + '\'' +
-				", price=" + price +
-				", area='" + area + '\'' +
-				'}';
+	@Inject
+	public OrangeBean() {
+		Log.e("test", "OrangeBean()");
 	}
 }
