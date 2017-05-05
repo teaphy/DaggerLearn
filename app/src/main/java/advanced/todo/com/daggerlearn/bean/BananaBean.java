@@ -4,6 +4,8 @@ import android.util.Log;
 
 import javax.inject.Inject;
 
+import advanced.todo.com.daggerlearn.di.scope.TodoScope;
+
 /**
  * @author Tiany
  * @desc
@@ -11,8 +13,16 @@ import javax.inject.Inject;
  */
 public class BananaBean {
 
-	@Inject
-	public BananaBean() {
-		Log.d("test", "BananaBean()");
+	String name;
+
+	public BananaBean(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "BananaBean{" +
+				"name='" + name + '\'' +
+				'}';
 	}
 }

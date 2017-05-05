@@ -11,10 +11,18 @@ import advanced.todo.com.daggerlearn.di.scope.TodoScope;
  * @desc
  * @date 2017/4/29
  */
-@TodoScope
 public class OrangeBean {
-	@Inject
-	public OrangeBean() {
-		Log.e("test", "OrangeBean()");
+
+	String desc;
+
+	public OrangeBean(String desc) {
+		this.desc = desc;
+	}
+
+	@Override
+	public String toString() {
+		return "OrangeBean{" +
+				"desc='" + desc + '\'' +
+				'}';
 	}
 }

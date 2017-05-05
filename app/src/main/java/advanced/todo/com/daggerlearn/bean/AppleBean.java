@@ -12,9 +12,19 @@ import advanced.todo.com.daggerlearn.di.scope.TodoScope;
  * @desc
  * @date 2017/4/29
  */
-@TodoScope
 public class AppleBean {
+
+	private String name;
+
 	@Inject
-	public AppleBean() {
+	public AppleBean(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "AppleBean{" +
+				"name='" + name + '\'' +
+				'}';
 	}
 }

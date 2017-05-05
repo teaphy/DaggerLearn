@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<include layout="@layout/layout_tool_bar" />
+
+	<TextView
+		android:id="@+id/tv_fruit"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:paddingLeft="14dp"
+		android:paddingRight="14dp"
+		android:text="Book"
+		android:textColor="@color/colorAccent"
+		android:textSize="16sp"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="horizontal">
+
+	</LinearLayout>
+
+</LinearLayout>

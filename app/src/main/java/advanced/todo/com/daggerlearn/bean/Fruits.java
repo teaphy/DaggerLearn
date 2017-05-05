@@ -6,19 +6,17 @@ package advanced.todo.com.daggerlearn.bean;
  * @date 2017/4/29
  */
 public class Fruits {
-	AppleBean appleBean;
-	OrangeBean orangeBean;
 
-	public Fruits(AppleBean appleBean, OrangeBean orangeBean) {
-		this.appleBean = appleBean;
-		this.orangeBean = orangeBean;
+	String desc;
+
+	public Fruits(String desc) {
+		this.desc = desc;
 	}
 
 	@Override
 	public String toString() {
 		return "Fruits{" +
-				"appleBean=" + appleBean +
-				", orangeBean=" + orangeBean +
+				"desc='" + desc + '\'' +
 				'}';
 	}
 }

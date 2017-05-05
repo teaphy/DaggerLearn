@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context="advanced.todo.com.daggerlearn.fragment.AppleFragment">
+
+	<TextView
+		android:id="@+id/tv_fruit"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingLeft="14dp"
+		android:paddingRight="14dp"
+		android:layout_marginTop="14dp"
+		android:text="hello book"
+		android:textColor="@color/colorPrimaryDark"
+		android:textSize="@dimen/sp_16"/>
+
+</FrameLayout>
