@@ -2,27 +2,21 @@ package advanced.todo.com.daggerlearn.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import java.util.Set;
 
 import javax.inject.Inject;
 
 import advanced.todo.com.daggerlearn.R;
 import advanced.todo.com.daggerlearn.bean.AppleBean;
-import advanced.todo.com.daggerlearn.bean.Fruits;
-import advanced.todo.com.daggerlearn.di.component.DaggerFruitComponent;
-import advanced.todo.com.daggerlearn.di.component.FruitComponent;
-import advanced.todo.com.daggerlearn.di.module.AppleModule;
+import advanced.todo.com.daggerlearn.bean.OrangeBean;
+import advanced.todo.com.daggerlearn.di.qualifier.Type;
+import advanced.todo.com.daggerlearn.di.scope.ActivityScope;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
 
 public class FruitActivity extends AppCompatActivity {
 
@@ -32,29 +26,22 @@ public class FruitActivity extends AppCompatActivity {
 	Toolbar mToolbar;
 
 	@Inject
-	Fruits mFruits;
-
-	@Inject
 	AppleBean mAppleBean;
+	@Inject
+	OrangeBean mOrangeBean;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		FruitComponent fruitComponent = DaggerFruitComponent.builder()
-				.build();
-		fruitComponent.inject(this);
-		fruitComponent.addAppleSubcomponent(new AppleModule());
+		AndroidInjection.inject(this);
 		super.onCreate(savedInstanceState);
 		setContentView(getLayoutId());
-
 		ButterKnife.bind(this);
 
 		initToolBar();
 
-		tvFruit.setText(mFruits.toString());
-		tvFruit.append("/n");
-		tvFruit.append(mAppleBean.toString());
-
-
+		tvFruit.setText(mAppleBean.toString());
+		tvFruit.append("\n");
+		tvFruit.append(mOrangeBean.toString());
 	}
 
 	protected int getLayoutId() {

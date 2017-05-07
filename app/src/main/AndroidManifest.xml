@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="advanced.todo.com.daggerlearn">
-
-	<uses-permission android:name="android.permission.INTERNET" />
-
+          package="advanced.todo.com.daggerlearn">
+	
+	<uses-permission android:name="android.permission.INTERNET"/>
+	
 	<application
 		android:name=".application.TodoApplication"
 		android:allowBackup="true"
@@ -14,15 +14,14 @@
 		android:theme="@style/AppTheme">
 		<activity android:name=".activity.MainActivity">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-
-				<category android:name="android.intent.category.LAUNCHER" />
+				<action android:name="android.intent.action.MAIN"/>
+				
+				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".activity.StudentActivity" />
-		<activity android:name=".activity.FruitActivity" />
-		<activity android:name=".activity.DrinkActivity" />
-		<activity android:name=".activity.BookActivity"></activity>
+		<activity android:name=".activity.FruitActivity"/>
+		<activity android:name=".activity.DrinkActivity"/>
+		<activity android:name=".activity.BookActivity"/>
 	</application>
 
 </manifest>

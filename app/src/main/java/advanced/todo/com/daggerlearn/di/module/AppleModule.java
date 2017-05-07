@@ -5,15 +5,14 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * @author Tiany
+ * @author todo
  * @desc
- * @date 2017/5/5
+ * @date 2017/5/7
  */
 @Module
-public class AppleModule {
-
+public abstract class AppleModule {
 	@Provides
-	public AppleBean privdeApple() {
+	public static AppleBean provideApple() {
 		return new AppleBean("这是一个苹果");
 	}
 }

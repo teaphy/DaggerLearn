@@ -1,21 +1,31 @@
 package advanced.todo.com.daggerlearn.di.module;
 
-import advanced.todo.com.daggerlearn.bean.Fruits;
-import advanced.todo.com.daggerlearn.di.component.AppleSubcomponent;
+import android.app.Activity;
+
+import advanced.todo.com.daggerlearn.activity.FruitActivity;
+import advanced.todo.com.daggerlearn.bean.OrangeBean;
+import advanced.todo.com.daggerlearn.di.component.FruitSubcomponent;
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
+import dagger.multibindings.IntoMap;
 
 /**
  * @author todo
  * @desc
- * @date 2017/4/29
+ * @date 2017/5/7
  */
-// 注明本类属于Module
-@Module(subcomponents = AppleSubcomponent.class)
-public class FruitModule {
+@Module(subcomponents = FruitSubcomponent.class)
+public abstract class FruitModule {
+	@Binds
+	@IntoMap
+	@ActivityKey(FruitActivity.class)
+	abstract AndroidInjector.Factory<? extends Activity> bind(FruitSubcomponent.Builder builder);
 
 	@Provides
-	public Fruits provideFruit() {
-		return  new Fruits("这是一个水果");
+	public static OrangeBean provide() {
+		return new OrangeBean("this is a orange!");
 	}
 }

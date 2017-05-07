@@ -3,5 +3,6 @@
 	<string-array name="learnList">
 		<item>Fruit</item>
 		<item>Drink</item>
+		<item>Book</item>
 	</string-array>
 </resources>

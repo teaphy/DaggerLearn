@@ -11,6 +11,9 @@ import advanced.todo.com.daggerlearn.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerActivity;
+import dagger.android.support.DaggerAppCompatActivity;
 
 /**
  * @author Tiany

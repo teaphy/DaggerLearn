@@ -1,25 +1,16 @@
 package advanced.todo.com.daggerlearn.activity;
 
-import com.google.auto.value.AutoAnnotation;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-
 import advanced.todo.com.daggerlearn.R;
-import advanced.todo.com.daggerlearn.bean.AppleBean;
-import advanced.todo.com.daggerlearn.di.component.DaggerDrinkComponent;
-import advanced.todo.com.daggerlearn.di.component.DrinkComponent;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import dagger.MapKey;
+import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 
 public class DrinkActivity extends AppCompatActivity {
 
@@ -30,9 +21,7 @@ public class DrinkActivity extends AppCompatActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		DrinkComponent drinkComponent = DaggerDrinkComponent.builder()
-				.build();
-		drinkComponent.inject(this);
+		AndroidInjection.inject(this);
 		super.onCreate(savedInstanceState);
 		setContentView(getLayoutId());
 

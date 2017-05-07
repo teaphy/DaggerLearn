@@ -15,27 +15,7 @@
 		android:paddingLeft="14dp"
 		android:paddingRight="14dp"
 		android:id="@+id/tv_fruit" />
-
-	<LinearLayout
-		android:baselineAligned="false"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="horizontal">
-
-		<fragment
-			android:id="@+id/frm_apple"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-			android:name="advanced.todo.com.daggerlearn.fragment.AppleFragment"/>
-
-		<fragment
-			android:id="@+id/frm_orange"
-			android:layout_width="0dp"
-			android:layout_height="match_parent"
-			android:layout_weight="1"
-			android:name="advanced.todo.com.daggerlearn.fragment.OrangeFragment"/>
-	</LinearLayout>
+	
 
 
 </LinearLayout>
