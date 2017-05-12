@@ -1,45 +1,35 @@
 package advanced.todo.com.daggerlearn.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatButton;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import advanced.todo.com.daggerlearn.Manifest;
 import advanced.todo.com.daggerlearn.R;
-import advanced.todo.com.daggerlearn.broadcast.CoffeeReceiver;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import dagger.android.AndroidInjection;
+import dagger.android.DaggerActivity;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class DrinkActivity extends AppCompatActivity {
+public class BookActivity extends DaggerAppCompatActivity {
 
 	@BindView(R.id.toolBar)
 	Toolbar mToolbar;
-	@BindView(R.id.acb_coffee)
-	AppCompatButton mAcbCoffee;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		AndroidInjection.inject(this);
 		super.onCreate(savedInstanceState);
-		setContentView(getLayoutId());
+		setContentView(R.layout.activity_book);
+
 
 		ButterKnife.bind(this);
 
 		initToolBar();
 	}
 
-	protected int getLayoutId() {
-		return R.layout.activity_drink;
-	}
-
 	private void initToolBar() {
 
-		mToolbar.setTitle("Drink");
+		mToolbar.setTitle("Book");
 		mToolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
 		mToolbar.setNavigationIcon(R.mipmap.ic_back);
 		setSupportActionBar(mToolbar);
@@ -54,12 +44,5 @@ public class DrinkActivity extends AppCompatActivity {
 
 	private void killMySelf() {
 		finish();
-	}
-
-	@OnClick(R.id.acb_coffee)
-	public void onViewClicked() {
-		Intent intent = new Intent();
-		intent.setAction(CoffeeReceiver.ACTION_COFFEE);
-		sendBroadcast(intent);
 	}
 }

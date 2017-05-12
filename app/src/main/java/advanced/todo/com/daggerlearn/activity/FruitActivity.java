@@ -1,6 +1,7 @@
 package advanced.todo.com.daggerlearn.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -17,8 +18,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasFragmentInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
-public class FruitActivity extends AppCompatActivity {
+public class FruitActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
 	@BindView(R.id.tv_fruit)
 	TextView tvFruit;
@@ -26,9 +30,7 @@ public class FruitActivity extends AppCompatActivity {
 	Toolbar mToolbar;
 
 	@Inject
-	AppleBean mAppleBean;
-	@Inject
-	OrangeBean mOrangeBean;
+	DispatchingAndroidInjector<android.support.v4.app.Fragment> fragmentInjector;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,6 @@ public class FruitActivity extends AppCompatActivity {
 		ButterKnife.bind(this);
 
 		initToolBar();
-
-		tvFruit.setText(mAppleBean.toString());
-		tvFruit.append("\n");
-		tvFruit.append(mOrangeBean.toString());
 	}
 
 	protected int getLayoutId() {
@@ -65,5 +63,11 @@ public class FruitActivity extends AppCompatActivity {
 
 	private void killMySelf() {
 		finish();
+	}
+
+
+	@Override
+	public AndroidInjector<android.support.v4.app.Fragment> supportFragmentInjector() {
+		return fragmentInjector;
 	}
 }

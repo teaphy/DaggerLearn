@@ -1,7 +1,8 @@
 package advanced.todo.com.daggerlearn.di.component;
 
 import advanced.todo.com.daggerlearn.activity.FruitActivity;
-import advanced.todo.com.daggerlearn.di.module.AppleModule;
+import advanced.todo.com.daggerlearn.di.module.OrangeModule;
+import advanced.todo.com.daggerlearn.di.scope.ActivityScope;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 
@@ -10,7 +11,7 @@ import dagger.android.AndroidInjector;
  * @desc
  * @date 2017/5/7
  */
-@Subcomponent(modules = AppleModule.class)
+@Subcomponent(modules = OrangeModule.class)
 public interface FruitSubcomponent extends AndroidInjector<FruitActivity> {
 
 	@Subcomponent.Builder

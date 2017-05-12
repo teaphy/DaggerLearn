@@ -3,6 +3,7 @@ package advanced.todo.com.daggerlearn.di.module;
 import android.app.Activity;
 
 import advanced.todo.com.daggerlearn.activity.FruitActivity;
+import advanced.todo.com.daggerlearn.bean.AppleBean;
 import advanced.todo.com.daggerlearn.bean.OrangeBean;
 import advanced.todo.com.daggerlearn.di.component.FruitSubcomponent;
 import dagger.Binds;
@@ -22,10 +23,10 @@ public abstract class FruitModule {
 	@Binds
 	@IntoMap
 	@ActivityKey(FruitActivity.class)
-	abstract AndroidInjector.Factory<? extends Activity> bind(FruitSubcomponent.Builder builder);
+	abstract AndroidInjector.Factory<? extends Activity> bindFruit(FruitSubcomponent.Builder builder);
 
 	@Provides
-	public static OrangeBean provide() {
-		return new OrangeBean("this is a orange!");
+	static AppleBean provideApple() {
+		return new AppleBean("苹果");
 	}
 }

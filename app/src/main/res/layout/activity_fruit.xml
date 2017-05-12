@@ -15,7 +15,11 @@
 		android:paddingLeft="14dp"
 		android:paddingRight="14dp"
 		android:id="@+id/tv_fruit" />
-	
 
+	<fragment
+		android:id="@+id/frm_orange"
+		android:name="advanced.todo.com.daggerlearn.activity.OrangeFragment"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
 
 </LinearLayout>

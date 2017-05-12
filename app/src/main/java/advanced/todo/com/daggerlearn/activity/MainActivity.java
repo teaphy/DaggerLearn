@@ -29,6 +29,8 @@ import butterknife.ButterKnife;
 import dagger.Component;
 import dagger.Module;
 import dagger.android.AndroidInjection;
+import dagger.android.DaggerIntentService;
+import dagger.android.DaggerService;
 
 public class MainActivity extends BaseActivity {
 
@@ -37,7 +39,6 @@ public class MainActivity extends BaseActivity {
 
 	List<String> mList;
 	SingleTextAdapter mAdapter;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class MainActivity extends BaseActivity {
 						startActivity(new Intent(mContext, DrinkActivity.class));
 						break;
 					case 2:
-
+						startActivity(new Intent(mContext, BookActivity.class));
 						break;
 					default:
 						break;
