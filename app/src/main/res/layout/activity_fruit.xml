@@ -18,7 +18,7 @@
 
 	<fragment
 		android:id="@+id/frm_orange"
-		android:name="advanced.todo.com.daggerlearn.activity.OrangeFragment"
+		android:name="com.advanced.todo.daggerlearn.activity.OrangeFragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 
