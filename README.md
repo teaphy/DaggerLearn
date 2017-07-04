@@ -9,6 +9,12 @@ Dagger系列：
 7. [Dagger 2从浅到深(七)](http://blog.csdn.net/io_field/article/details/71319138)
 8. [Dagger 2应用于Android的完美扩展库-dagger.android](http://blog.csdn.net/IO_Field/article/details/71730248)
 
+<font color="blue" size=5>
+Demo地址： [https://github.com/teaphy/DaggerLearn](https://github.com/teaphy/DaggerLearn)
+</font>
+
+
+
 # 概述 #
 在使用Dagger开发Android时，不可避免的一个问题是，许多Android的类都是由系统实例化的，比如Activity、Fragment等，如果使用Dagger依赖注入实例，我们不由得这么写：
 
@@ -217,6 +223,35 @@ Dagger提供的基本类型：
 		}
 ## 注入BroadcastReceiver实例 ##
 
+这里我们先看看如何动态注册一个广播。动态注册需要在代码中动态的指定广播地址并注册，通常我们是在Activity或Service注册一个广播，下面我们就来看一下注册的代码：
+
+	CoffeeReceiver receiver = new CoffeeReceiver();  
+	          
+	IntentFilter filter = new IntentFilter();  
+	filter.addAction("android.intent.action.MY_BROADCAST");  
+	          
+	registerReceiver(receiver, filter); 
+
+registerReceiver是android.content.ContextWrapper类中的方法，Activity和Service都继承了ContextWrapper，所以可以直接调用。在实际应用中，我们在Activity或Service中注册了一个BroadcastReceiver，当这个Activity或Service被销毁时如果没有解除注册，系统会报一个异常，提示我们是否忘记解除注册了。所以，记得在特定的地方执行解除注册操作：
+
+	@Override  
+	protected void onDestroy() {  
+	    super.onDestroy();  
+	    unregisterReceiver(receiver);  
+	} 
+
+执行这样行代码就可以解决问题了。注意，这种注册方式与静态注册相反，不是常驻型的，也就是说广播会跟随程序的生命周期。
+我们可以根据以上任意一种方法完成注册，当注册完成之后，这个接收者就可以正常工作了。我们可以用以下方式向其发送一条广播：
+
+	@OnClick(R.id.acb_coffee)
+	public void onViewClicked() {
+		Intent intent = new Intent();
+		intent.setAction(CoffeeReceiver.ACTION_COFFEE);
+		sendBroadcast(intent);
+	} 
+
+这样，就完成了一次简单的广播的简单注册，看起来也不算太复杂。接下来，让我们来看看使用Dager2依赖注入广播实例：
+
 1. 创建BroadcastReceiver - CoffeeReceiver,其继承自DaggerBroadcastReceiver。在CoffeeReceiver中，依赖注入AppleBean实例。
 
 		public class CoffeeReceiver extends DaggerBroadcastReceiver {
@@ -293,9 +328,11 @@ Dagger提供的基本类型：
 <font color="red">
 注意：
 
-- 只有当BroadcastReceiver在AndroidManifest.xml中注册时，才能使用DaggerBroadcastReceiver。 当在代码中创建BroadcastReceiver时，推荐使用构造函数注入。
+- 只有当BroadcastReceiver在AndroidManifest.xml中注册时，才能使用DaggerBroadcastReceiver。 当在动态注册BroadcastReceiver时，推荐使用构造函数注入。
 </font>
 
+一看前面的代码，使用Dagger2注入广播时，步骤显得复杂了。而，原生动态注册广播也没有几行代码。不过，值得注意的是，使用原生动态注册广播时，每次都得重复的new和注册等操作，而Dagger只要提供依赖关系即可。
+# 关于Dagger的使用流程 #
 对于其他的基本类型，不再举例子，创建模式基本是一样的，比较呆瓜式流程如下：
 
 1. 在ApplicationComponent中注入AndroidInjectionModule,如果项目中用到v4包的Fragment，还需注入AndroidSupportInjectionModule.建议把两个Module都注入XxComponent中，说不定哪位同仁和你想法一样呢...
@@ -394,7 +431,26 @@ Dagger提供的基本类型：
 
 对于DaggerFragment而言，可能觉得奇怪，为什么不再super.onCreate()之前调用呢？一是，当Fragment被重新绑定，这样也可以防止不一致；二是，如果已经绑定了Activity的Fragment，又依赖注入了一个Fragment，这时，super.onAttach(fragment)调用AndroidInjection.inject()显得尤为重要了。
 
+# 更人性化的Dagger2 #
 
-<font color="blue" size=5>
-Demo地址：[https://github.com/teaphy/DaggerLearn](https://github.com/teaphy/DaggerLearn)
-</font>
+看了上面的流程，是不是觉得有点模板化了，每创建一个组件，都要重复着这些步骤，有没有优化的可能呢？接下来，我们先看 Dagger2中的一个注解@ContributesAndroidInjector
+
+	@Target(METHOD)
+	public @interface ContributesAndroidInjector {
+	  // 要注入到生成的dagger.Subcomponent中的Module。
+	  Class<?>[] modules() default {};
+	}
+官方文档对它是这么解释的：为其注解的方法生成相应的AndroidInjector。该注射器是 dagger.Subcomponent的实现，而且dagger.Module 的子类。
+ 
+- 此注释必须应用于返回具体的Android框架类型(例如:FooActivity、BarFragment、MyService等）的dagger.Module中的抽象方法。
+- 该方法应该没有参数。
+
+这样，可以将前面的 Dagger的使用流程中的步骤3、4、5省略为：
+
+	@Module
+	public abstract class BookModule {
+	
+		@ContributesAndroidInjector
+		abstract BookActivity contributesBookActivity();
+	}
+这样，是不是节省了很多工作，不用再机械式的创建。
